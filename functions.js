@@ -10,11 +10,11 @@ const checkPathExist = (userPath) => {
   if (existPath) {
     return true;
   } else {
-    throw new error();
+    console.log('Enter a path');
   }
 };
 
-// console.log('INSPEEECTION', checkPathExist(rootFile));
+checkPathExist(rootFile);
 
 const absolutePath = (userPath) => {
   const pathAbsolute = path.isAbsolute(userPath);
@@ -99,12 +99,9 @@ const validarHTTP = (objetArray) => {
   let promiseArr = [];
   promiseArr = objetArray.map((objet) => {
     return axios.get(objet.href).then((res) => {
-      console.log("AXIOS : ", res.status);
-
         objet.status = res.status;
         objet.message = "Ok";
         return objet;
-
     })
     .catch((err)=>{
       objet.status =  404;
@@ -115,6 +112,6 @@ const validarHTTP = (objetArray) => {
  return  Promise.all(promiseArr).then(res=> res)
 };
 
-// readAllFiles(searchFilesMd(rutAbsolute)).then(resAll => validarHTP(resAll.flat())).then(res=>console.log('RESPUESTA:', res))
-// validarHTP()
+// readAllFiles(searchFilesMd(rutAbsolute)).then(resAll => validarHTTP(resAll.flat())).then(res=>console.log('RESPUESTA:', res))
+// validarHTTP()
 module.exports = { absolutePath, searchFilesMd, readAllFiles, validarHTTP };

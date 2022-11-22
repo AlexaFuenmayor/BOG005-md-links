@@ -1,6 +1,20 @@
 {
-  "name": "md-links",
+  "name": "alexa-fuenmayor-md-links",
   "version": "0.1.0",
+  "description": "Library that reads markdown files and checks if they contain links and checks their status",
+  "main": "./index.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "node.js",
+    "extract links",
+    "jest",
+    "markdown"
+  ],
+  "author": "Alexandra Fuenmayor <alexandrafuenmayor.em@gmail.com>",
+  "license": "MIT",
+
   "engines": {
     "node": ">=14.x"
   },
@@ -8,5 +22,8 @@
     "axios": "^1.1.3",
     "markdown-it": "^13.0.1",
     "marked": "^4.2.2"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }
