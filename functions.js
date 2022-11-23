@@ -5,16 +5,16 @@ const rootFile = process.argv[2];
 const marked = require("marked");
 const axios = require("axios");
 
-const checkPathExist = (userPath) => {
-  const existPath = fs.existsSync(userPath);
-  if (existPath) {
-    return true;
-  } else {
-    console.log('Enter a path');
-  }
-};
+// const checkPathExist = (userPath) => {
+//   const existPath = fs.existsSync(userPath);
+//   if (existPath) {
+//     return true;
+//   } else {
+//     console.log("Enter a path");
+//   }
+// };
 
-checkPathExist(rootFile);
+// checkPathExist(rootFile);
 
 const absolutePath = (userPath) => {
   const pathAbsolute = path.isAbsolute(userPath);
@@ -23,8 +23,6 @@ const absolutePath = (userPath) => {
     return pathRelative;
   }
 };
-// console.log("absolute path is: ", absolutePath(rootFile));
-const rutAbsolute = absolutePath(rootFile);
 
 const searchFilesMd = (userPath) => {
   let arrayFileMd = [];
@@ -47,8 +45,6 @@ const searchFilesMd = (userPath) => {
     });
   } else if (path.extname(userPath) === ".md") {
     arrayFileMd.push(userPath);
-    // let files = fs.readFileSync(userPath, 'UTF-8')
-    // console.log('files content: ', files);
 
     // console.log('prueba array File DENTRO DEL ESLE: ', arrayFileMd);
   }
@@ -82,36 +78,31 @@ const readFile = (fileMD) => {
   });
 };
 
-
 const readAllFiles = (arrayFiles) => {
   let promiseArr = [];
   promiseArr = arrayFiles.map((fileMD) => {
     return readFile(fileMD);
-    // .then(res=>console.log('Ver cada archivo MD: ', res))
   });
   return Promise.all(promiseArr).then((res) => res);
 };
 
-// console.log('es sincrono o asincrono: ', readFiles(searchFilesMd(rootFile[2])));
-
-// module.exports = absolutePath
 const validarHTTP = (objetArray) => {
   let promiseArr = [];
   promiseArr = objetArray.map((objet) => {
-    return axios.get(objet.href).then((res) => {
+    return axios
+      .get(objet.href)
+      .then((res) => {
         objet.status = res.status;
         objet.message = "Ok";
         return objet;
-    })
-    .catch((err)=>{
-      objet.status =  404;
-      objet.message = 'Fail'
-      return objet;
-    })
+      })
+      .catch((err) => {
+        objet.status = 404;
+        objet.message = "Fail";
+        return objet;
+      });
   });
- return  Promise.all(promiseArr).then(res=> res)
+  return Promise.all(promiseArr).then((res) => res);
 };
 
-// readAllFiles(searchFilesMd(rutAbsolute)).then(resAll => validarHTTP(resAll.flat())).then(res=>console.log('RESPUESTA:', res))
-// validarHTTP()
 module.exports = { absolutePath, searchFilesMd, readAllFiles, validarHTTP };
