@@ -6,17 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "keywords": [
-    "node.js",
-    "extract links",
-    "jest",
-    "markdown"
-  ],
-  "author": "Alexandra Fuenmayor <alexandrafuenmayor.em@gmail.com>",
-  "license": "MIT",
-  "bin": {
-    "md-links": "/Cli.js"
-  },
 
   "engines": {
     "node": ">=14.x"
@@ -35,5 +24,23 @@
 "scripts": {
   "start": "node index.js",
   "test": "jest --coverage"
-}
+},
+
+"repository": {
+  "type": "git",
+  "url": "git+https://github.com/Tatianasanabr/BOG005-md-links.git"
+},
+"keywords": [
+  "node.js",
+  "extract links",
+  "jest",
+  "markdown"
+],
+"author": "Alexandra Fuenmayor <alexandrafuenmayor.em@gmail.com>",
+"license": "ISC",
+"bugs": {
+  "url": "https://github.com/AlexaFuenmayor/BOG005-md-links/issues"
+},
+"homepage": "https://github.com/AlexaFuenmayor/BOG005-md-links#readme"
+
 }
